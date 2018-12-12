@@ -1,16 +1,14 @@
-FROM openjdk:jre-alpine
-MAINTAINER XebiaLabs "info@xebialabs.com"
+FROM alpine:3.8
 
-RUN apk --no-cache add wget
+RUN apk add --no-cache curl
 
-ADD resources/command.sh /opt/xld/command.sh
+RUN curl --fail-early -o /usr/local/bin/xl https://dist.xebialabs.com/public/xl-cli/8.5.0/linux-amd64/xl && \
+    chmod +x /usr/local/bin/xl
 
-VOLUME /data
+RUN curl --fail-early -o /usr/local/bin/wait-for https://raw.githubusercontent.com/eficode/wait-for/master/wait-for && \
+    chmod +x /usr/local/bin/wait-for
 
-RUN wget --progress=dot:giga -O /tmp/xl-deploy-trial-cli.zip https://dist.xebialabs.com/xl-deploy-trial-cli.zip && \
-    mkdir -p /opt/xld && \
-    unzip /tmp/xl-deploy-trial-cli.zip -d /opt/xld && \
-    mv /opt/xld/xl-deploy-*-cli /opt/xld/cli && \
-    rm -rf /tmp/xl-deploy-trial-cli.zip
+USER 10001
+VOLUME "/data"
 
-CMD ["sh","-x","/opt/xld/command.sh"]
+ENTRYPOINT /usr/local/bin/wait-for -t 120 $XL_DEPLOY && /usr/local/bin/wait-for -t 120 $XL_RELEASE && /usr/local/bin/xl

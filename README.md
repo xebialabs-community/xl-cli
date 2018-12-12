@@ -1,23 +1,31 @@
-# xl-docker-demo-xld-cli
+# xl-cli
 
-Docker image that has XLD CLI installed.
+Docker image that has XL CLI installed.
 
 ## CI status
 
-[![Docker Hub][xl-docker-demo-xld-cli-docker-hub-image] ][xl-docker-demo-xld-cli-docker-hub-url]
-[![License: MIT][xl-docker-demo-xld-cli-license-image] ][xl-docker-demo-xld-cli-license-url]
+[![Docker Hub][xl-cli-docker-hub-image] ][xl-cli-docker-hub-url]
+[![License: MIT][xl-cli-license-image] ][xl-cli-license-url]
 
 
-[xl-docker-demo-xld-cli-docker-hub-image]: https://img.shields.io/badge/docker-ready-blue.svg
-[xl-docker-demo-xld-cli-docker-hub-url]: https://registry.hub.docker.com/u/xebialabsunsupported/xl-docker-demo-xld-cli/
-[xl-docker-demo-xld-cli-license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
-[xl-docker-demo-xld-cli-license-url]: https://opensource.org/licenses/MIT
+[xl-cli-docker-hub-image]: https://img.shields.io/badge/docker-ready-blue.svg
+[xl-cli-docker-hub-url]: https://registry.hub.docker.com/u/xebialabsunsupported/xl-cli/
+[xl-cli-license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
+[xl-cli-license-url]: https://opensource.org/licenses/MIT
 
 
 
 ## Supported tags
 
-+ `8.1.0` [Dockerfile](https://github.com/xebialabs-community/xl-docker-demo-xld-cli/blob/master/Dockerfile)
++ `8.5.0` [Dockerfile](https://github.com/xebialabs-community/xl-cli/blob/master/Dockerfile)
 
 ## Dockerfile
-+ `Dockerfile` builds the container with base image `jre-alpine`
++ `Dockerfile` builds the container with base image `alpine`
+
+## Usage
+
+For example will print the xl cli help message:
+
+```
+    docker run -e XL_DEPLOY=172.17.0.1:4516 -e XL_RELEASE=172.17.0.1:5516 xebialabsunsupported/xl-cli:8.5.0
+```
