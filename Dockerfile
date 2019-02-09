@@ -12,4 +12,4 @@ RUN curl --fail-early -o /usr/local/bin/wait-for https://raw.githubusercontent.c
 USER 10001
 VOLUME "/data"
 
-ENTRYPOINT /usr/local/bin/wait-for -t 120 $XL_DEPLOY && /usr/local/bin/wait-for -t 120 $XL_RELEASE && /usr/local/bin/xl
+ENTRYPOINT ["/usr/local/bin/wait-for","-t","120","$XL_DEPLOY","&&","/usr/local/bin/wait-for","-t","120","$XL_RELEASE","&&","/usr/local/bin/xl"]
