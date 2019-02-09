@@ -9,6 +9,6 @@ echo "8.5.0" > /tmp/cli_download
 
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 while read tag ; do
-    docker build -t $image_name:$tag . --build-arg CLI_VERSION=$tag .
+    docker build -t $image_name:$tag . --build-arg CLI_VERSION=$tag
     docker push $image_name:$tag
 done < <(comm -23 <(sort /tmp/cli_download) <(sort /tmp/cli))
