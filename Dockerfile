@@ -11,5 +11,7 @@ RUN curl --fail-early -o /usr/local/bin/wait-for https://raw.githubusercontent.c
 
 USER 10001
 VOLUME "/data"
+ENV XL_DEPLOY xld:4516
+ENV XL_RELEASE xlr:5516
 
-ENTRYPOINT ["/usr/local/bin/wait-for","-t","120","$XL_DEPLOY","&&","/usr/local/bin/wait-for","-t","120","$XL_RELEASE","&&","/usr/local/bin/xl"]
+ENTRYPOINT ["sh","-c","/usr/local/bin/wait-for $XL_DEPLOY -t 120","&&","sh","-c","/usr/local/bin/wait-for $XL_RELEASE -t 120","&&","/usr/local/bin/xl"]
