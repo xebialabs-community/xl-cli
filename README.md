@@ -27,5 +27,5 @@ Docker image that has XL CLI installed.
 For example will print the xl cli help message:
 
 ```
-    docker run -e XL_DEPLOY=172.17.0.1:4516 -e XL_RELEASE=172.17.0.1:5516 xebialabsunsupported/xl-cli:8.5.0
+    docker run -v $PWD/config.yaml:/data/config.yaml -e XL_DEPLOY=172.17.0.1:4516 -e XL_RELEASE=172.17.0.1:5516 xebialabsunsupported/xl-cli:8.5.0 --config /data/config.yaml help
 ```
